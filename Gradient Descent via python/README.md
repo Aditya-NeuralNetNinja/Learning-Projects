@@ -2,7 +2,8 @@
 
 This repository contains the Python implementation of Gradient Descent, a simple yet powerful optimization algorithm widely used in machine learning and deep learning. 🔍📉🔬
 
-![AngryInconsequentialDiplodocus-size_restricted](https://github.com/chrs897/gradient_descent/assets/108260519/e12256aa-5aba-4a32-a3f4-c32abdd39cdf) 🦖🔥
+![AngryInconsequentialDiplodocus-size_restricted](https://github.com/Aditya-NeuralNetNinja/Learning-Projects/assets/108260519/3af86e57-59a7-47eb-a352-410d86beb383)
+
 
 ## Overview 📚🔍
 
