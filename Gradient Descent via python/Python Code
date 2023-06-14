@@ -1,0 +1,51 @@
+import numpy as np
+
+# Initialize the input array with random values
+x = np.random.randn(10,1)
+print(x)
+
+# Create the output array as a function of input plus some random noise
+y = 5*x + np.random.rand()
+
+# Initialize weight and bias parameters for gradient descent
+w = 0.0
+b = 0.0
+
+# Set the learning rate hyperparameter
+learning_rate = 0.01
+
+# Define the gradient descent function
+def descent(x,y,w,b,learning_rate):
+    # Initialize derivatives
+    dldw = 0.0
+    dldb = 0.0
+    # Get the number of observations
+    N = x.shape[0]
+
+    # Iterate over all observations to compute gradient
+    for i in range(N):
+        dldw += -2*x[i]*(y[i]-(w*x[i]+b))  # Gradient of the loss with respect to w
+        dldb += -2*(y[i]-(w*x[i]+b))  # Gradient of the loss with respect to b
+
+    # Update the parameters using the computed gradients and learning rate
+    w = w - learning_rate*(1/N)*dldw
+    b = b - learning_rate*(1/N)*dldb
+
+    return w,b
+
+# Run the gradient descent algorithm for a number of iterations (epochs)
+for epoch in range(400):
+    # Update parameters w and b using gradient descent
+    w,b = descent(x,y,w,b,learning_rate)
+    
+    # Compute predicted output
+    yhat = w*x+b
+    
+    # Compute the loss (Mean Squared Error)
+    loss = np.divide(np.sum((y-yhat)**2), x.shape[0])
+    
+    # Print the loss and parameters for each epoch
+    print(f'{epoch} loss is {loss}, parameters w: {w}, b:{b}')
+
+# Print the final values of x and y
+print (x,y)
