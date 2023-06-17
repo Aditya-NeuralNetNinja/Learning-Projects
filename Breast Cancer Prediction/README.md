@@ -2,8 +2,6 @@
 
 Predictive binary classification model for breast cancer 🩺📈📊
 
-![images(1)](https://github.com/Aditya-NeuralNetNinja/Breast-Cancer-Prediction/assets/108260519/44df9b7d-f1a5-4582-9479-3c5e6ce9631b) 📸👀
-
 This repository contains a Python script that demonstrates how to use sklearn's SGD Classifier and Polynomial Regression to classify the Breast Cancer dataset. 🐍🧪📚
 
 ## Description 📝📋
