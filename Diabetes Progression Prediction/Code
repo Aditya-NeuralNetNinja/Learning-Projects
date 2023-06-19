@@ -17,6 +17,92 @@ print(df.head())
 # Target variable
 target = pd.DataFrame(data.target)
 
+from sklearn.model_selection import train_test_split
 
+# Split into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(df, target, test_size=0.2)
 
+#Training and evaluating SGDRegressor
+from sklearn.linear_model import SGDRegressor
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 
+# Instantiate and train model
+sgdR = SGDRegressor()
+sgdR.fit(X_train, y_train.values.ravel())
+
+# Make predictions
+y_pred = sgdR.predict(X_test)
+
+# Calculate and print performance metrics
+print("SGDRegressor metrics:")
+print(f"R2 score: {r2_score(y_test, y_pred)}")
+print(f"Mean squared error: {mean_squared_error(y_test, y_pred)}")
+print(f"Mean absolute error: {mean_absolute_error(y_test, y_pred)}")
+
+#Training and evaluating DecisionTreeRegressor
+from sklearn.tree import DecisionTreeRegressor
+
+# Instantiate and train model
+dtr = DecisionTreeRegressor()
+dtr.fit(X_train, y_train.values.ravel())
+
+# Make predictions
+y_pred = dtr.predict(X_test)
+
+# Calculate and print performance metrics
+print("DecisionTreeRegressor metrics:")
+print(f"R2 score: {r2_score(y_test, y_pred)}")
+print(f"Mean squared error: {mean_squared_error(y_test, y_pred)}")
+print(f"Mean absolute error: {mean_absolute_error(y_test, y_pred)}")
+
+#Training and evaluating RandomForestRegressor
+from sklearn.ensemble import RandomForestRegressor
+
+# Instantiate and train model
+rf = RandomForestRegressor()
+rf.fit(X_train, y_train.values.ravel())
+
+# Make predictions
+y_pred = rf.predict(X_test)
+
+# Calculate and print performance metrics
+print("RandomForestRegressor metrics:")
+print(f"R2 score: {r2_score(y_test, y_pred)}")
+print(f"Mean squared error: {mean_squared_error(y_test, y_pred)}")
+print(f"Mean absolute error: {mean_absolute_error(y_test, y_pred)}")
+
+#Training and evaluating KNeighborsRegressor
+from sklearn.neighbors import KNeighborsRegressor
+
+# Instantiate and train model
+knn = KNeighborsRegressor()
+knn.fit(X_train, y_train.values.ravel())
+
+# Make predictions
+y_pred = knn.predict(X_test)
+
+# Calculate and print performance metrics
+print("KNeighborsRegressor metrics:")
+print(f"R2 score: {r2_score(y_test, y_pred)}")
+print(f"Mean squared error: {mean_squared_error(y_test, y_pred)}")
+print(f"Mean absolute error: {mean_absolute_error(y_test, y_pred)}")
+
+#Performing polynomial regression with RandomForestRegressor
+from sklearn.preprocessing import PolynomialFeatures
+
+# Instantiate and perform feature transformation
+pf = PolynomialFeatures(degree=2)
+xtrainpf = pf.fit_transform(X_train)
+xtestpf = pf.transform(X_test)
+
+# Train the model with transformed features
+rf.fit(xtrainpf, y_train.values.ravel())
+
+# Make predictions
+y_pred = rf.predict(xtestpf)
+
+# Calculate and print performance metrics
+print("Polynomial regression with RandomForestRegressor metrics:")
+print(f"R2 score: {r2_score(y_test, y_pred)}")
+print(f"Mean squared error: {mean_squared_error(y_test, y_pred)}")
+print(f"Mean absolute error: {mean_absolute_error(y_test, y_pred)}")
