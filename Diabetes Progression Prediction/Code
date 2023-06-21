@@ -1,4 +1,4 @@
-#Imports
+# Imports
 import numpy as np 
 import pandas as pd 
 from sklearn.datasets import load_diabetes
@@ -14,95 +14,129 @@ print(df.shape)
 print(df.dtypes)
 print(df.head())
 
+print(data.feature_names)
+print(df.isnull().sum())
+df.info()
+df.describe()
+df.corr()
+
 # Target variable
 target = pd.DataFrame(data.target)
-
-from sklearn.model_selection import train_test_split
+print(target)
 
 # Split into training and test sets
+from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(df, target, test_size=0.2)
 
-#Training and evaluating SGDRegressor
-from sklearn.linear_model import SGDRegressor
+# Linear Regression - Baseline model
+from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+linearReg = LinearRegression()
+linearReg.fit(X_train, y_train.squeeze())
+y_pred = linearReg.predict(X_test)
+print("Linear Regression metrics:")
+print(f"R2 score: {r2_score(y_test, y_pred)}")
+print(f"Mean squared error: {mean_squared_error(y_test, y_pred)}")
+print(f"Mean absolute error: {mean_absolute_error(y_test, y_pred)}")
 
-# Instantiate and train model
-sgdR = SGDRegressor()
-sgdR.fit(X_train, y_train.values.ravel())
-
-# Make predictions
+# SGD Regressor
+from sklearn.linear_model import SGDRegressor
+sgdR = SGDRegressor(max_iter=10000)
+sgdR.fit(X_train, y_train.squeeze())
 y_pred = sgdR.predict(X_test)
-
-# Calculate and print performance metrics
 print("SGDRegressor metrics:")
 print(f"R2 score: {r2_score(y_test, y_pred)}")
 print(f"Mean squared error: {mean_squared_error(y_test, y_pred)}")
 print(f"Mean absolute error: {mean_absolute_error(y_test, y_pred)}")
 
-#Training and evaluating DecisionTreeRegressor
+# Decision Tree Regressor
 from sklearn.tree import DecisionTreeRegressor
-
-# Instantiate and train model
 dtr = DecisionTreeRegressor()
-dtr.fit(X_train, y_train.values.ravel())
-
-# Make predictions
+dtr.fit(X_train, y_train.squeeze())
 y_pred = dtr.predict(X_test)
-
-# Calculate and print performance metrics
 print("DecisionTreeRegressor metrics:")
 print(f"R2 score: {r2_score(y_test, y_pred)}")
 print(f"Mean squared error: {mean_squared_error(y_test, y_pred)}")
 print(f"Mean absolute error: {mean_absolute_error(y_test, y_pred)}")
 
-#Training and evaluating RandomForestRegressor
+# Random Forest Regressor
 from sklearn.ensemble import RandomForestRegressor
-
-# Instantiate and train model
 rf = RandomForestRegressor()
-rf.fit(X_train, y_train.values.ravel())
-
-# Make predictions
+rf.fit(X_train, y_train.squeeze())
 y_pred = rf.predict(X_test)
-
-# Calculate and print performance metrics
 print("RandomForestRegressor metrics:")
 print(f"R2 score: {r2_score(y_test, y_pred)}")
 print(f"Mean squared error: {mean_squared_error(y_test, y_pred)}")
 print(f"Mean absolute error: {mean_absolute_error(y_test, y_pred)}")
 
-#Training and evaluating KNeighborsRegressor
+# KNN Regressor
 from sklearn.neighbors import KNeighborsRegressor
-
-# Instantiate and train model
 knn = KNeighborsRegressor()
-knn.fit(X_train, y_train.values.ravel())
-
-# Make predictions
+knn.fit(X_train, y_train.squeeze())
 y_pred = knn.predict(X_test)
-
-# Calculate and print performance metrics
 print("KNeighborsRegressor metrics:")
 print(f"R2 score: {r2_score(y_test, y_pred)}")
 print(f"Mean squared error: {mean_squared_error(y_test, y_pred)}")
 print(f"Mean absolute error: {mean_absolute_error(y_test, y_pred)}")
 
-#Performing polynomial regression with RandomForestRegressor
+# Polynomial regression with RandomForestRegressor
 from sklearn.preprocessing import PolynomialFeatures
-
-# Instantiate and perform feature transformation
+rf_pf = RandomForestRegressor()
 pf = PolynomialFeatures(degree=2)
 xtrainpf = pf.fit_transform(X_train)
 xtestpf = pf.transform(X_test)
-
-# Train the model with transformed features
-rf.fit(xtrainpf, y_train.values.ravel())
-
-# Make predictions
-y_pred = rf.predict(xtestpf)
-
-# Calculate and print performance metrics
+rf_pf.fit(xtrainpf, y_train.squeeze())
+y_pred = rf_pf.predict(xtestpf)
 print("Polynomial regression with RandomForestRegressor metrics:")
 print(f"R2 score: {r2_score(y_test, y_pred)}")
 print(f"Mean squared error: {mean_squared_error(y_test, y_pred)}")
 print(f"Mean absolute error: {mean_absolute_error(y_test, y_pred)}")
+
+# Building a pipeline
+from sklearn.pipeline import Pipeline
+models = [
+    ("linearReg", LinearRegression()),
+    ("sgdR", SGDRegressor(max_iter=10000, random_state=42)),
+    ("dtr", DecisionTreeRegressor(random_state=42)),
+    ("rf", RandomForestRegressor(random_state=42)),
+    ("knn", KNeighborsRegressor()),
+    ("rf_pf", Pipeline(steps=[('pf', PolynomialFeatures(degree=2)), 
+                              ('random_forest', RandomForestRegressor(random_state=42))])),
+]
+
+for name, model in models:
+    pipeline = Pipeline(steps=[(name, model)])
+    pipeline.fit(X_train, y_train.squeeze())
+    y_pred = pipeline.predict(X_test)
+    print(f"Model: {name}")
+    print(f"R2 score: {r2_score(y_test, y_pred)}")
+    print(f"Mean absolute error: {mean_absolute_error(y_test, y_pred)}")
+    print(f"Mean squared error: {mean_squared_error(y_test, y_pred)}")
+    print("\n")
+
+'''
+Final Model Selected: Random Forest with Polynomial Features
+
+All models we have trained have reasonably close R2 scores and mean absolute error values.
+
+However, if we were to choose a single best model from these results, we might 
+consider the Random Forest with Polynomial Features (rf_pf). This model has the highest 
+R2 score and the lowest mean absolute error among all the models we trained. The R2 score for 
+rf_pf is approximately 0.523, which is the highest, indicating that this model 
+explains approximately 52.3% of the variance in the target variable. Furthermore, 
+it has the lowest mean absolute error, which indicates that, on average, its 
+predictions are closer to the actual values.
+
+It's important to remember that these metrics only give us part of the picture. The best model for 
+our application depends on various factors such as how the model will be used, the 
+computational resources available, the importance of interpretability, and so on. 
+Therefore, although the Random Forest with Polynomial Features is performing best 
+in this particular run, it's important to consider these other factors in our final 
+decision.
+
+Also, we should bear in mind that these results can change if the train-test split 
+changes, or if different parameter settings (like different degrees for Polynomial Features, 
+different hyperparameters for the models, etc.) are used. Therefore, a good practice 
+might be to use techniques like cross-validation and hyperparameter tuning to get 
+more robust estimates of model performance and make a more informed choice. 
+'''
