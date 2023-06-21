@@ -57,4 +57,5 @@ Contributions to this project are welcome! Fork the repo and create a Pull Reque
 
 ## 📬 Contact
 LinkedIn: [Aditya Chourasiya](https://www.linkedin.com/in/aditya-chourasiya/)
+
 Email: adityachrs7@gmail.com
