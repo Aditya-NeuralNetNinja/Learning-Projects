@@ -14,7 +14,7 @@ Here is a quick overview of the projects:
 2. **[Breast Cancer Prediction](https://github.com/Aditya-NeuralNetNinja/Learning-Projects/tree/main/Breast%20Cancer%20Prediction)**: An application of machine learning for medical diagnosis prediction.
 3. **[IPL Match Analysis - EDA](https://github.com/Aditya-NeuralNetNinja/Learning-Projects/tree/main/IPL-Match-Analysis-EDA)**: An exploratory data analysis of IPL matches.
 4. **[K Means Clustering Project](https://github.com/Aditya-NeuralNetNinja/Learning-Projects/tree/main/K%20means%20clustering%20project)**: An exploratory project focused on one of the most commonly used clustering techniques.
-5. And many more to come...
+5. **[Data Visualization on Ford's Car Dataset](https://github.com/Aditya-NeuralNetNinja/Learning-Projects/tree/main/Data%20Visualization)**: Explore insights and analysis of Ford's car dataset through impactful data visualizations.
 
 Feel free to explore these projects! 💡💻
 
