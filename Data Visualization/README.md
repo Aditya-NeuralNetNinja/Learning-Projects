@@ -1,4 +1,4 @@
-# Ford Car Price Prediction 🚗💰
+# Data Visualization of Ford's Car Dataset 🚗💰
 
 This is a repository of an exploratory data analysis of a dataset related to Ford car prices. It also presents some useful insights and visualizations related to the car market. 📊✨
 
