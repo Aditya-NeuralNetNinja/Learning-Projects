@@ -15,6 +15,7 @@ Here is a quick overview of the projects:
 3. **[IPL Match Analysis - EDA](https://github.com/Aditya-NeuralNetNinja/Learning-Projects/tree/main/IPL-Match-Analysis-EDA)**: An exploratory data analysis of IPL matches.
 4. **[K Means Clustering Project](https://github.com/Aditya-NeuralNetNinja/Learning-Projects/tree/main/K%20means%20clustering%20project)**: An exploratory project focused on one of the most commonly used clustering techniques.
 5. **[Data Visualization on Ford's Car Dataset](https://github.com/Aditya-NeuralNetNinja/Learning-Projects/tree/main/Data%20Visualization)**: Explore insights and analysis of Ford's car dataset through impactful data visualizations.
+6. **[Diabetes Progression Prediction](https://github.com/Aditya-NeuralNetNinja/Learning-Projects/tree/main/Diabetes%20Progression%20Prediction)**: Develop a predictive model to estimate the progression of diabetes based on various factors, utilizing machine learning techniques and analysis.
 
 Feel free to explore these projects! 💡💻
 
