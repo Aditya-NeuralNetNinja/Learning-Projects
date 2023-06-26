@@ -36,3 +36,7 @@ Remember, every expert was once a beginner. So don't hesitate to take that first
 Regards,
 
 Aditya Chourasiya
+
+adityachrs@gmail.com
+
+[LinkedIn](https://www.linkedin.com/in/aditya-chourasiya/)
