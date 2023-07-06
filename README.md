@@ -37,6 +37,6 @@ Regards,
 
 Aditya Chourasiya
 
-adityachrs@gmail.com
+adityachrs7@gmail.com
 
 [LinkedIn](https://www.linkedin.com/in/aditya-chourasiya/)
